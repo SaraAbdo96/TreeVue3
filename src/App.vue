@@ -1,26 +1,99 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <tree-view :node="treeData"></tree-view>
+    <sara-tree class="item" :item="treeData"></sara-tree>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import TreeView from "./components/TreeMenu.vue";
+import SaraTree from "./components/SaraTree.vue";
+//import Vue from "vue";
 export default {
-  name: 'App',
+  name: "App",
+  data() {
+    return {
+      treeData: [{
+        name: "My Tree",
+        children: [
+          {
+            name: "hello",
+          },
+          {
+            name: "wat",
+          },
+          {
+            name: "child folder",
+            children: [
+              {
+                name: "child folder",
+                children: [
+                  {
+                    name: "hello",
+                  },
+                  {
+                    name: "wat",
+                  },
+                ],
+              },
+              {
+                name: "hello",
+              },
+              {
+                name: "wat",
+              },
+              {
+                name: "child folder",
+                children: [
+                  {
+                    name: "hello",
+                  },
+                  {
+                    name: "wat",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name:'sara',
+        children:[
+          {name:'sos'}
+        ]
+      }
+      ],
+    };
+  },
   components: {
-    HelloWorld
-  }
-}
+    TreeView,SaraTree
+  },
+  // methods: {
+  //   makeFolder(item) {
+  //     Vue.set(item, "children", []);
+  //     // this.addItem(item);
+  //   },
+  // },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+*{
+  direction: rtl;
+}
+
+.item {
+  cursor: pointer;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+ul {
+  padding-left: 1em;
+  line-height: 1.5em;
+  list-style-type: none;
 }
 </style>
