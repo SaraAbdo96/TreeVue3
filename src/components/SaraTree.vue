@@ -49,6 +49,7 @@ export default {
       //    console.log(this.item[i].children&&this.item[i].children.length);
       // }
       console.log(typeof(this.item[child].children));
+      //return this.item[child].children && this.item[child].children.length;
       return true;
       //return this.item.children && this.item.children.length;
     },
