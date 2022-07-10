@@ -13,7 +13,7 @@ export default {
   name: "App",
   data() {
     return {
-      treeData: [{
+      treeData: {
         name: "My Tree",
         children: [
           {
@@ -57,13 +57,6 @@ export default {
           },
         ],
       },
-      {
-        name:'sara',
-        children:[
-          {name:'sos'}
-        ]
-      }
-      ],
     };
   },
   components: {

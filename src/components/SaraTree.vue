@@ -1,19 +1,19 @@
 <template>
   <div>
-    <li v-for="branch in item" :key="branch.id">
+    <li>
       <div :class="{ bold: isFolder }" @click="toggle" @dblclick="makeFolder">
-        <span v-if="isFolder(branch)">{{ isOpen ? "-" : "+" }}</span> {{ branch.name }}
+        <span v-if="isFolder">{{ isOpen ? "-" : "+" }}</span> {{ item.name }}
       </div>
-      <!-- <ul v-show="isOpen" v-if="isFolder">
+      <ul v-show="isOpen" v-if="isFolder">
         <tree-item
           class="item"
-          v-for="(child, index) in branch.children"
+          v-for="(child, index) in item.children"
           :key="index"
           :item="child"
           @make-folder="$emit('make-folder', $event)"
           @add-item="$emit('add-item', $event)"
         ></tree-item>
-      </ul> -->
+      </ul>
     </li>
   </div>
 </template>
@@ -30,43 +30,23 @@ export default {
     };
   },
   computed: {
-    isFolder(child) {
-      // let a = this.item.forEach(element => {
-      //     return element.children && element.children.length;
-      // });
-      // //return this.item.children && this.item.children.length;
-      // return a;
-      // for (let i = 0; i < this.item.length; i++) {
-      //   console.log(this.item[i].children);
-      // }
-      // let a = i.forEach(ele => {
-      //     if(ele.children && ele.children.length)  return;
-      // });
-      // console.log(this.item[0].children);
-      // console.log(this.item[1].children);
-      // console.log(this.item[2].children);
-      // for(var i =0; i<this.item.length;i++){
-      //    console.log(this.item[i].children&&this.item[i].children.length);
-      // }
-      console.log(typeof(this.item[child].children));
-      //return this.item[child].children && this.item[child].children.length;
-      return true;
-      //return this.item.children && this.item.children.length;
+    isFolder: function () {
+      return this.item.children && this.item.children.length;
     },
   },
-  // methods: {
-  //   toggle() {
-  //     if (this.isFolder) {
-  //       this.isOpen = !this.isOpen;
-  //     }
-  //   },
-  //   makeFolder() {
-  //     if (!this.isFolder) {
-  //       this.$emit("make-folder", this.item);
-  //       this.isOpen = true;
-  //     }
-  //   },
-  // },
+  methods: {
+    toggle: function () {
+      if (this.isFolder) {
+        this.isOpen = !this.isOpen;
+      }
+    },
+    makeFolder: function () {
+      if (!this.isFolder) {
+        this.$emit("make-folder", this.item);
+        this.isOpen = true;
+      }
+    },
+  },
 };
 </script>
 
